@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Todo List</h1>
+
+
+<form hx-post="/add" hx-swap="beforeend" hx-target="#task-list" hx-trigger="submit">
+    <label for="task-input">Add Task:</label>
+    <input type="text" name="task" id="task-input" placeholder="describe what needs to be done...">
+</form>
+
+<ul id="task-list"
+hx-target="closest li"
+hx-swap="outerHTML"
+>
+    {% for todo in todolist %}
+    {% include 'todoItem.html' with context %}
+    {% endfor %}
+</ul>
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+
+
+htmx.on('htmx:afterSwap', function(evt) {
+    console.log('htmx:afterSwap', evt);
+    document.getElementById('task-input').value = '';
+}); 
+</script>
+
+{% endblock %}

@@ -1,0 +1,5 @@
+<li hx-swap="outerHTML" hx-target="this">
+    <form id="todoForm"  hx-put="/edit/{{ todo.doc_id }}" hx-trigger="submit,focusout">
+        <input autocomplete="off" autofocus type="text" name="task" value="{{ todo.task }}">
+    </form>
+</li>

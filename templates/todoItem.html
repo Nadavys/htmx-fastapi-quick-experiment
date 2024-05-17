@@ -1,0 +1,9 @@
+<li class="">
+    {% if todo['status'] == 'pending'%}
+    <a href="" hx-swap="outerHTML" hx-get="/edit/{{ todo.doc_id }}"> {{ todo.task }}</a>
+    <button class="button" hx-patch="/status/{{ todo.doc_id }}/completed" >done</button>
+    {% elif todo['status'] == 'completed' %}
+    <del><span hx-swap="outerHTML"> {{ todo.task }}</span></del>
+    {% endif %}
+    <button class="button" hx-delete="/delete/{{ todo.doc_id }}" >delete</button>
+</li>
